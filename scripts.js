@@ -25,11 +25,11 @@ let arrayOfTodos = [
   }
 
   const populateTodos = () => {
-    let todolist = document.getElementById("todo-list")
-    let createditem = document.createElement("LI")
-    let jsonresponse = document.createTextNode(arrayOfTodos[0].title)
-    createditem.appendChild(jsonresponse)
-    todolist.appendChild(createditem)
-
+    for (i=0; i < arrayOfTodos.length; i++) {
+      let todolist = document.getElementById("todo-list")
+      let createditem = document.createElement("LI")
+      let jsonresponse = document.createTextNode(arrayOfTodos[i].title)
+      createditem.appendChild(jsonresponse)
+      todolist.appendChild(createditem) 
+    }   
   }
-      
