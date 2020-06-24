@@ -27,3 +27,11 @@ let arrayOfTodos = [
   const populateTodos = () => {
 
   }
+
+  arrayOfTodos[0].title
+
+  let list = () => {
+    document.geElementById("todo-list")
+    
+  }
+      
