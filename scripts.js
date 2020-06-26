@@ -1,5 +1,3 @@
-// We'll pre-populate this array with a couple objects just so it's not undefined if your internet connection isn't working properly.
-
 let arrayOfTodos = [
     {
     "userId": 14,
@@ -20,36 +18,45 @@ let arrayOfTodos = [
     .then( (json) => arrayOfTodos = json)
   }
 
+  let x = ""
+
   const logTodos = () => {
     console.log(arrayOfTodos)
   }
 
-  const populateTodos = () => {    
-    let todolist = document.getElementById("todo-list")
-    let fontColor = ""
-    
-    for (i = 0; i < arrayOfTodos.length; i++) {   
-            
-      if(arrayOfTodos[i].completed === true) {
-        fontColor = "green"
-      } else {
-        fontColor = "red"
-      }
+  // let todolist = () =>{
+  //   document.getElementById()
+  // }
 
+  const userNum = (num) => {
+    x = parseInt (num)
+    // console.log(num)
+  }
+
+  const populateAllTodos = () => {
+    populateTodos(arrayOfTodos)
+}
+  let fontColor = ""
+
+  const populateTodos = (arr) => { 
+    let todolist = document.getElementById("todo-list")
+    
+    for (i=0; i < arr.length; i++) {  
       let todolisttag = document.createElement("LI")
       let useridtag = document.createElement("H2")
       let idtag = document.createElement("H2")
       let titletag = document.createElement("H3")
       let completedtag = document.createElement("H2")
-      // createdLI.appendChild(todolist)
 
-      let jsonresponsetitle = document.createTextNode(arrayOfTodos[i].title)
+      completedtag.style.color = fontColor
+
+      let jsonresponsetitle = document.createTextNode(arr[i].title)
       titletag.appendChild(jsonresponsetitle)
-      let jsonresponseuserid = document.createTextNode(arrayOfTodos[i].userId)
+      let jsonresponseuserid = document.createTextNode(arr[i].userId)
       useridtag.appendChild(jsonresponseuserid)
-      let jsonresponseid = document.createTextNode(arrayOfTodos[i].id)
+      let jsonresponseid = document.createTextNode(arr[i].id)
       idtag.appendChild(jsonresponseid)
-      let jsonresponsecompleted = document.createTextNode(arrayOfTodos[i].completed)
+      let jsonresponsecompleted = document.createTextNode(arr[i].completed)
       completedtag.appendChild(jsonresponsecompleted)
 
       todolist.appendChild(todolisttag)
@@ -58,15 +65,54 @@ let arrayOfTodos = [
       todolisttag.appendChild(titletag)
       todolisttag.appendChild(completedtag)
 
-      
-      completedtag.style.color = fontColor
-      
-       
-      // createdLI.appendChild(jsonresponsetitle)
 
+      if(arr[i].completed === true) {
+        fontColor = "green"
+      } else {
+        fontColor = "red"
+      }
+        
     }   
-  }
+}
 
-  // const completed = () => {
+  const userIdFilter = () => {
+    let arrayOfUserTodos = arrayOfTodos.filter(function(useridfilter) {
+        return useridfilter.userId === x
+    })
+    populateTodos(arrayOfUserTodos)
+    console.log(arrayOfUserTodos)
+  }
+   
+
+  const filterTodoByCompleted = () => {
+  
     
-  // }
+  
+    let arrayOfCompleted = arrayOfTodos.filter(function(todo){
+      return todo.completed === true
+    })
+  
+    populateTodos(arrayOfCompleted)
+  
+  
+  }
+  
+  const filterTodoByIncomplete = () => {
+  
+    let arrayOfNotCompleted = arrayOfTodos.filter(function(todo){
+    return todo.completed === false
+  })
+  
+  populateTodos(arrayOfNotCompleted)
+  
+  
+  }
+  
+  const resetTodos = () => {
+    
+    const arrayOfTodos = document.getElementsByTagName("OL")
+    for (i=0; i < arrayOfTodos.length; i++)
+    arrayOfTodos[i].innerHTML = null
+  
+    console.log(arrayOfTodos)
+  }

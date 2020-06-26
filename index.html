@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>dummy data practice</title>
 </head>
 <body>
     <button onclick="fetchTodos()">Fetch Todos</button>
     <button onclick="logTodos()">Log Todos</button>
-    <button onclick="populateTodos()">Populate Todos</button>
+    <button onclick="populateAllTodos()">Populate Todos</button>
+    <label for="userId">UserID</label>
+    <input onkeyup="userNum(this.value)" type="text" id="userId" name="userId">
+    <button onclick="userIdFilter()">Show UserID</button>
+    <button onclick="filterTodoByCompleted()">Show Completed</button>
+    <button onclick="filterTodoByIncomplete()">Show Incomplete</button>
+    <button type="button" onclick="resetTodos()">Reset</button><br>
     <ol id="todo-list">
       <!-- LIs will go here -->
     </ol>
