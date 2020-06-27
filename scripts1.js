@@ -12,42 +12,43 @@ let arrayOfTodos = [
     "completed": false
   }]
 
-  const handleInput = (userNum) => {
-    userNum = document.getElementById("userId").value
-  }
-
-  let userNum = null  
-  
-
   const fetchTodos = () => {
     fetch('https://jsonplaceholder.typicode.com/todos')
     .then( (response) => response.json())
     .then( (json) => arrayOfTodos = json)
   }
 
+  let x = ""
+
   const logTodos = () => {
     console.log(arrayOfTodos)
+  }
+
+  // let todolist = () =>{
+  //   document.getElementById()
+  // }
+
+  const userNum = (num) => {
+    x = parseInt (num)
+    // console.log(num)
   }
 
   const populateAllTodos = () => {
     populateTodos(arrayOfTodos)
 }
+  let fontColor = ""
 
   const populateTodos = (arr) => { 
-    let todolist = document.getElementById("todo-list")    
-    let fontColor = ""    
+    let todolist = document.getElementById("todo-list")
     
-    for (i=0; i < arr.length; i++) {
-      if(arr[i].completed === true) {
-        fontColor = "green"
-      } else {
-        fontColor = "red"
-      }
+    for (i=0; i < arr.length; i++) {  
       let todolisttag = document.createElement("LI")
-      let useridtag = document.createElement("p")
-      let idtag = document.createElement("p")
-      let titletag = document.createElement("p")
-      let completedtag = document.createElement("p")   
+      let useridtag = document.createElement("H2")
+      let idtag = document.createElement("H2")
+      let titletag = document.createElement("H3")
+      let completedtag = document.createElement("H2")
+
+      completedtag.style.color = fontColor
 
       let jsonresponsetitle = document.createTextNode(arr[i].title)
       titletag.appendChild(jsonresponsetitle)
@@ -64,7 +65,13 @@ let arrayOfTodos = [
       todolisttag.appendChild(titletag)
       todolisttag.appendChild(completedtag)
 
-      completedtag.style.color = fontColor
+
+      if(arr[i].completed === true) {
+        fontColor = "green"
+      } else {
+        fontColor = "red"
+      }
+        
     }   
 }
 
@@ -74,19 +81,19 @@ let arrayOfTodos = [
     element.removeChild(element.firstChild);
     }
     let arrayOfUserTodos = arrayOfTodos.filter(function(useridfilter) {
-        return useridfilter.userId === userNum
+        return useridfilter.userId === x
     })
     populateTodos(arrayOfUserTodos)
   }
    
 
-  const filterTodoByCompleted = () => {    
+  const filterTodoByCompleted = () => {
     let element = document.getElementById("todo-list");
-    while (element.firstChild) {
-    element.removeChild(element.firstChild);
-    }
+        while (element.firstChild) {
+        element.removeChild(element.firstChild);
+        }  
     let arrayOfCompleted = arrayOfTodos.filter(function(todo){
-      return (todo.completed === true && todo.userId === x)
+      return todo.completed === true
     })  
     populateTodos(arrayOfCompleted)  
   }
@@ -97,7 +104,7 @@ let arrayOfTodos = [
         element.removeChild(element.firstChild);
         }  
     let arrayOfNotCompleted = arrayOfTodos.filter(function(todo){
-        return (todo.completed === false && todo.userId === x)
+        return todo.completed === false
         })
     populateTodos(arrayOfNotCompleted)  
   }
