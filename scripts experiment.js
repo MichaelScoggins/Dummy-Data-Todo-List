@@ -12,36 +12,32 @@ let arrayOfTodos = [
     "completed": false
   }]
 
+  const handleInput = (userNum) => {
+    userNum = document.getElementById("userId").value
+    console.log(userNum)
+    
+  }
+
+  let userNum = null  
+  
+
   const fetchTodos = () => {
     fetch('https://jsonplaceholder.typicode.com/todos')
     .then( (response) => response.json())
     .then( (json) => arrayOfTodos = json)
   }
 
-  let x = ""
-
   const logTodos = () => {
     console.log(arrayOfTodos)
   }
 
-  // let todolist = () =>{
-  //   document.getElementById()
-  // }
-
-  const userNum = (num) => {
-    x = parseInt(num)
-    // console.log(num)
-  }
-
-    const populateAllTodos = () => {
+  const populateAllTodos = () => {
     populateTodos(arrayOfTodos)
 }
 
   const populateTodos = (arr) => { 
-    let todolist = document.getElementById("todo-list")
-    
-    let fontColor = ""
-    
+    let todolist = document.getElementById("todo-list")    
+    let fontColor = ""    
     
     for (i=0; i < arr.length; i++) {
       if(arr[i].completed === true) {
@@ -80,10 +76,10 @@ let arrayOfTodos = [
     element.removeChild(element.firstChild);
     }
     let arrayOfUserTodos = arrayOfTodos.filter(function(useridfilter) {
-        return useridfilter.userId === x
+        return useridfilter.userId === userNum
     })
     populateTodos(arrayOfUserTodos)
-  }
+  }  
    
 
   const filterTodoByCompleted = () => {    

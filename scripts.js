@@ -12,30 +12,36 @@ let arrayOfTodos = [
     "completed": false
   }]
 
-  const handleInput = (userNum) => {
-    userNum = document.getElementById("userId").value
-  }
-
-  let userNum = null  
-  
-
   const fetchTodos = () => {
     fetch('https://jsonplaceholder.typicode.com/todos')
     .then( (response) => response.json())
     .then( (json) => arrayOfTodos = json)
   }
 
+  let x = ""
+
   const logTodos = () => {
     console.log(arrayOfTodos)
   }
 
-  const populateAllTodos = () => {
+  // let todolist = () =>{
+  //   document.getElementById()
+  // }
+
+  const userNum = (num) => {
+    x = parseInt(num)
+    // console.log(num)
+  }
+
+    const populateAllTodos = () => {
     populateTodos(arrayOfTodos)
 }
 
   const populateTodos = (arr) => { 
-    let todolist = document.getElementById("todo-list")    
-    let fontColor = ""    
+    let todolist = document.getElementById("todo-list")
+    
+    let fontColor = ""
+    
     
     for (i=0; i < arr.length; i++) {
       if(arr[i].completed === true) {
@@ -49,13 +55,14 @@ let arrayOfTodos = [
       let titletag = document.createElement("p")
       let completedtag = document.createElement("p")   
 
-      let jsonresponsetitle = document.createTextNode(arr[i].title)
+      let jsonresponsetitle = document.createTextNode('Title: '+ arr[i].title)
+      
       titletag.appendChild(jsonresponsetitle)
-      let jsonresponseuserid = document.createTextNode(arr[i].userId)
+      let jsonresponseuserid = document.createTextNode('UserID: ' + arr[i].userId)
       useridtag.appendChild(jsonresponseuserid)
-      let jsonresponseid = document.createTextNode(arr[i].id)
+      let jsonresponseid = document.createTextNode('ID: ' + arr[i].id)
       idtag.appendChild(jsonresponseid)
-      let jsonresponsecompleted = document.createTextNode(arr[i].completed)
+      let jsonresponsecompleted = document.createTextNode('Completed: ' + arr[i].completed)
       completedtag.appendChild(jsonresponsecompleted)
 
       todolist.appendChild(todolisttag)
@@ -74,7 +81,7 @@ let arrayOfTodos = [
     element.removeChild(element.firstChild);
     }
     let arrayOfUserTodos = arrayOfTodos.filter(function(useridfilter) {
-        return useridfilter.userId === userNum
+        return useridfilter.userId === x
     })
     populateTodos(arrayOfUserTodos)
   }

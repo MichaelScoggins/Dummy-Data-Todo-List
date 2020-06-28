@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>dummy data practice</title>
 </head>
 <body>
@@ -11,8 +10,8 @@
     <button onclick="logTodos()">Log Todos</button>
     <button onclick="populateAllTodos()">Populate Todos</button>
     <label for="userId">UserID</label>
-    <input onkeyup="userNum(this.value)" type="text" id="userId" name="userId">
-    <button onclick="userIdFilter()">Filter by UserID</button>
+    <input oninput="handleInput(this.value)" type="number" value="" id="userId" name="userId" min="1" max="10">
+    <button onclick="userIdFilter()">Show UserID</button>
     <button onclick="filterTodoByCompleted()">Show Completed</button>
     <button onclick="filterTodoByIncomplete()">Show Incomplete</button>
     <button type="button" onclick="resetTodos()">Reset</button><br>
